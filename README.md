@@ -38,21 +38,6 @@ A desktop tool for managing HD texture replacements for Dissidia 012 Final Fanta
 3. Drag the `.app` file into your **Applications** folder.
 4. Run it from Applications.
 
-### Running from source
-Requirements:
-- Python 3.12
-- Pillow
-
-Install dependencies:
-```
-pip install pillow
-```
-
-Run:
-```
-python app.py
-```
-
 ---
 
 ## Setup
