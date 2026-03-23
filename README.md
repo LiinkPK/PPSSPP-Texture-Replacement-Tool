@@ -62,6 +62,16 @@ A desktop tool for managing HD texture replacements for Dissidia 012 Final Fanta
 
 The entry will be written in the correct format and sorted alphabetically within its section.
 
+---
+
+## It is very important to **NOT** rename the original file.
+
+It should maintain its hexadecimal string for the replacement to work.
+
+**Example:**
+
+>If the filename is `0000000000000000668a48bc.png` do not change it to `AerithTexture_old.png` or PPSSPP will not overwrite it.
+---
 <img width="521" height="355" alt="1" src="https://github.com/user-attachments/assets/7018aad7-3e16-4164-9d89-a4678464106a" />
 <img width="521" height="355" alt="2" src="https://github.com/user-attachments/assets/b1ba26b2-bc45-49ad-93fa-7c4de47c721c" />
 
