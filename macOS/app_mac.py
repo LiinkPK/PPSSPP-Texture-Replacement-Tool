@@ -15,7 +15,11 @@ def resource_path(filename):
         return Path(sys._MEIPASS) / filename
     return Path(__file__).parent / filename
 
-HISTORY_FILE = Path(__file__).parent / "history.json"
+if hasattr(sys, '_MEIPASS'):
+    HISTORY_FILE = Path(sys.executable).parent / "history.json"
+else:
+    HISTORY_FILE = Path(__file__).parent / "history.json"
+    
 PREVIEW_SIZE = 256
 DISCORD_URL = "https://discord.gg/wbpgtKNSM7"
 NAVY = "#0D47A1"

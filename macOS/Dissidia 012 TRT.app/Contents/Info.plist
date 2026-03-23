@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Dissidia 012 Texture Replacement Tool</string>
+	<string>Dissidia 012 TRT</string>
 	<key>CFBundleExecutable</key>
-	<string>Dissidia 012 Texture Replacement Tool</string>
+	<string>Dissidia 012 TRT</string>
 	<key>CFBundleIconFile</key>
 	<string>chocobo2.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>Dissidia 012 Texture Replacement Tool</string>
+	<string>Dissidia 012 TRT</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Dissidia 012 Texture Replacement Tool</string>
+	<string>Dissidia 012 TRT</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
