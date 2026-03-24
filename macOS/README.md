@@ -36,7 +36,13 @@ A desktop tool for managing HD texture replacements for Dissidia 012 Final Fanta
 1. Download `Dissidia012TRT.dmg` from the [Releases](../../releases) page.
 2. Open the file to mount the disk image.
 3. Drag `Dissidia 012 TRT.app` into your **Applications** folder. Replace if prompted.
-4. Run it from Applications.
+4. Open `terminal` and copy-paste the following code to allow mac to run the unsigned app:
+```
+xattr -cr /Applications/Dissidia\ 012\ TRT.app/
+```
+
+5. Confirm by typing your password if prompted.
+6. Run it from Applications.
 
 ---
 
