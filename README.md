@@ -1,6 +1,6 @@
-# Dissidia 012 Texture Replacement Tool
+# PPSSPP Texture Replacement Tool
 
-A desktop tool for managing HD texture replacements for Dissidia 012 Final Fantasy (PPSSPP).
+A desktop tool for managing HD texture replacements for any game running on PPSSPP.
 
 ---
 
@@ -28,18 +28,18 @@ A desktop tool for managing HD texture replacements for Dissidia 012 Final Fanta
 ## Installation
 
 ### Windows
-1. Download `Dissidia012TRT.exe` from the [Releases](../../releases) page.
+1. Download `PPSSPP_TRT.exe` from the [Releases](../../releases) page.
 2. Place the file anywhere on your computer.
-3. Run `Dissidia012TRT.exe`. **No installation required**.
+3. Run `PPSSPP_TRT.exe`. **No installation required**.
 4. If **Windows** blocks the app, click `Run anyway`. 
 
 ### macOS
-1. Download `Dissidia012TRT.dmg` from the [Releases](../../releases) page.
+1. Download `PPSSPP_TRT.dmg` from the [Releases](../../releases) page.
 2. Open the file to mount the disk image.
-3. Drag `Dissidia 012 TRT.app` into your **Applications** folder. Replace if prompted.
+3. Drag `PPSSPP TRT.app` into your **Applications** folder. Replace if prompted.
 4. Open `terminal` and copy-paste the following code to allow mac to run the unsigned app:
 ```
-xattr -cr /Applications/Dissidia\ 012\ TRT.app/
+xattr -cr /Applications/PPSSPP\ TRT.app/
 ```
 
 5. Confirm by typing your password if prompted.
@@ -79,21 +79,24 @@ It should maintain its hexadecimal string for the replacement to work.
 
 >If the filename is `0000000000000000668a48bc.png` do not change it to `AerithTexture_old.png` or PPSSPP will not overwrite it.
 ---
-<img width="521" height="355" alt="1" src="https://github.com/user-attachments/assets/7018aad7-3e16-4164-9d89-a4678464106a" />
-<img width="521" height="355" alt="2" src="https://github.com/user-attachments/assets/b1ba26b2-bc45-49ad-93fa-7c4de47c721c" />
+
+<img width="522" height="356" alt="App1" src="https://github.com/user-attachments/assets/0968b850-b526-4976-b044-afacc18ddc63" />
+<img width="522" height="356" alt="App2" src="https://github.com/user-attachments/assets/0e4c2377-3d96-4d93-8eda-fe827a2fce6f" />
+![Kain1](https://github.com/user-attachments/assets/97dfacc0-553a-47a3-a121-e1866e7bc979)
+<img width="407" height="539" alt="Kain3" src="https://github.com/user-attachments/assets/abe74b37-29e7-4e76-bb1d-98de56c474e7" />
 
 ---
 
 ## textures.ini format
 
 PPSSPP identifies textures using only the last 8 digits of their hash code. The tool automatically formats the entry so only those 8 digits are written to the .ini file.
-The tool uses `#` for top-level categories and `##` for sub-categories:
+The tool uses `>` for top-level categories and `>>` for sub-categories:
 ```
-#Characters
-##Aerith
+>Characters
+>>Aerith
 0000000000000000668a48bc = Characters/Aerith/AerithMenuPort.png
 
-#JobCards
+>JobCards
 00000000000000000e58e631 = JobCards/WhiteMage.png
 ```
 
@@ -105,7 +108,7 @@ After appending the entries to the .ini file, make sure `texture replacement` is
 
 `Settings > Tools > Developer tools > Texture replacement > Replace textures`
 
-> **Compatibility:** While this tool was built specifically for Dissidia 012, it may work with other PSP games that use a similar texture replacement setup. This has not been tested yet — feel free to test it and share your experience on [Issues](https://github.com/LiinkPK/Dissidia-012-Texture-Replacement-Tool/issues) or on our [Discord server](https://discord.gg/wbpgtKNSM7).
+Feel free to test it and share your experience on [Issues](../../issues) or on our [Discord server](https://discord.gg/wbpgtKNSM7).
 
 ---
 
