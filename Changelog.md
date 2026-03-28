@@ -1,5 +1,5 @@
 CHANGELOG = {
-    "v1.0.3": [
+    "v1.3": [
         "After testing with other games, app has been renamed to 'PPSSPP Texture Replacement Tool'",
         "Changed category and sub-category prefix from '#' to '>' to avoid conflicts with INI comment syntax.",
         "Added 'Edit' button next to Category and Sub-Category dropdowns: allows adding sub-categories, renaming, and deleting directly from the UI.",
@@ -15,14 +15,14 @@ CHANGELOG = {
         "[macOS] Removed context menu when right-clicking empty preview frames.",
         "[macOS] Fixed Applications alias in installation disk image.",
     ],
-    "v1.0.2": [
+    "v1.2": [
         "Fixed crash when textures.ini is empty.",
         "Improved aspect ratio warning message.",
         "Minor UI adjustments.",
         "Added pointer animation to append button.",
         "Added macOS support.",
     ],
-    "v1.0.1": [
+    "v1.1": [
         "Initial release of 'Dissidia 012 Texture Replacement Tool'.",
     ],
 }

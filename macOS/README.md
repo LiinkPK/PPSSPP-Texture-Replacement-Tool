@@ -31,13 +31,13 @@ Title has been changed after testing the tool with several games and seeing that
 ## Installation
 
 ### Windows
-1. Download `PPSSPP_TRT.exe` from the [Releases](../../releases) page.
+1. Download `PPSSPP TRT.exe` from the [Releases](../../releases) page.
 2. Place the file anywhere on your computer.
-3. Run `PPSSPP_TRT.exe`. **No installation required**.
+3. Run `PPSSPP TRT.exe`. **No installation required**.
 4. If **Windows** blocks the app, click `Run anyway`. 
 
 ### macOS
-1. Download `PPSSPP_TRT.dmg` from the [Releases](../../releases) page.
+1. Download `PPSSPP TRT.dmg` from the [Releases](../../releases) page.
 2. Open the file to mount the disk image.
 3. Drag `PPSSPP TRT.app` into your **Applications** folder. Replace if prompted.
 4. Open `terminal` and copy-paste the following code to allow mac to run the unsigned app:
