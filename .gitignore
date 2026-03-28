@@ -3,3 +3,9 @@ __pycache__/
 build/
 dist/
 history.json
+app.py
+*.otf
+*ttf
+*.py
+git rm --cached app.py
+git rm --cached app_mac.py

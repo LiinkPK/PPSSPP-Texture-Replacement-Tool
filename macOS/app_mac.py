@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import font as tkfont
 from tkinter import filedialog, messagebox, simpledialog
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 from pathlib import Path
@@ -83,7 +84,7 @@ except:
     pass
 root.title("Dissidia 012 Texture Replacement Tool")
 root.geometry("1040x680")
-root.resizable(False, False)
+root.resizable(True, False)
 
 old_png_path = tk.StringVar()
 new_png_path = tk.StringVar()
@@ -110,12 +111,12 @@ sidebar_sort = "recent"
 
 FONT_TITLE = ("Trajan Pro", 14, "bold")
 FONT_TITLE2 = ("Trajan Pro", 10, "bold")
-FONT_HEADER = ("Futura Std Condensed Medium", 10)
-FONT_BODY = ("Segoe UI", 10)
-FONT_SMALL = ("Segoe UI", 8)
+FONT_HEADER = ("Futura Std Book", 10)
+FONT_BODY = ("Segoe UI", 12)
+FONT_SMALL = ("Segoe UI", 10)
 FONT_BUTTON = ("Segoe UI", 9, "bold")
-FONT_FOOTER = ("Futura Std Condensed Medium", 8)
-FONT_SIDEBAR = ("Futura Std Condensed Medium", 8)
+FONT_FOOTER = ("Futura Std Book", 10)
+FONT_SIDEBAR = ("Futura Std Book", 12)
 
 def load_history():
     global history_data
@@ -430,7 +431,7 @@ def toggle_theme():
 
 def draw_topbar_btn(c, text):
     c.delete("all")
-    c.create_text(20, 20, text=text, fill="#ffffff", font=("Segoe UI", 13))
+    c.create_text(20, 20, text=text, fill="#ffffff", font=("Segoe UI", 15))
     c.config(bg=NAVY)
 
 def load_preview(path, canvas, label_info):
@@ -544,6 +545,19 @@ def run_replacement():
         if ini_key in line:
             messagebox.showwarning("Already exists!", f"An entry with the key '{last_8}' already exists in textures.ini.\n\nNo changes were made.")
             return
+
+    replacement_name = new.name.lower()
+    for line in existing_lines:
+        if "=" in line and not line.strip().startswith("#"):
+            existing_file = line.split("=", 1)[1].strip()
+            if Path(existing_file).name.lower() == replacement_name:
+                messagebox.showwarning(
+                    "Duplicate Filename",
+                    f'A file named "{new.name}" is already referenced in textures.ini.\n\n'
+                    f'Please rename your replacement texture before appending.'
+                )
+                return
+
     with open(log_path, "r") as f:
         content = f.read()
     lines = content.split("\n")
@@ -618,8 +632,64 @@ def open_ini_file():
     else:
         messagebox.showerror("Error", "Please select a textures.ini file first.")
 
+def open_in_explorer(path):
+    if path and Path(path).is_file():
+        if IS_MAC:
+            subprocess.Popen(["open", "-R", path])
+        elif IS_WIN:
+            windows_path = str(Path(path).resolve())
+            subprocess.Popen(f'explorer /select,"{windows_path}"', shell=True)
+        else:
+            subprocess.Popen(["xdg-open", str(Path(path).parent)])
+    else:
+        messagebox.showerror("Error", "Please select a file first.")
+
 def open_discord():
     webbrowser.open(DISCORD_URL)
+
+CHANGELOG = {
+    "v1.0.3": [
+        "Fonts embedded to package.",
+        "Changed body fonts and some capitalization.",
+        "Fixed aspect ratio warning not showing: User now has a prompt to choose whether to proceed or go back before appending.",
+        "Preview frames are now centered: If the image was too thin, the Original Texture frame was anchored to the top while Replaced Texture was centered. Both are now centered.",
+        "Added 'Show in Explorer' function: An 'eye' icon appears on both directory blocks once a PNG is selected, opening the containing folder and highlighting the file.",
+        "Added current version label next to title: Clicking it shows the Changelog.",
+        "Fixed filename duplicate warning: Previously only triggered if the hex filename was already in textures.ini. Now also checks the Replaced Texture's filename.",
+        "[macOS] Larger overall GUI text.",
+        "[macOS] Removed context menu when right-clicking empty preview frames.",
+        "[macOS] Fixed Applications alias in installation disk image.",
+        "[macOS] Made the window resizable for better compatibility."
+    ],
+    "v1.0.2": [
+        "Fixed crash when textures.ini is empty.",
+        "Improved aspect ratio warning message.",
+        "Minor UI adjustments.",
+        "Added pointer animation to append button.",
+        "Added macOS support.",
+    ],
+    "v1.0.1": [
+        "Initial release.",
+    ],
+}
+
+def show_changelog():
+    popup = tk.Toplevel(root)
+    popup.title("Version Changelog")
+    popup.config(bg=current_theme["bg"])
+    popup.resizable(False, False)
+    popup.grab_set()
+    popup.iconbitmap(str(resource_path("chocobo2.ico")))
+
+    tk.Label(popup, text="Changelog", font=FONT_TITLE, bg=current_theme["bg"], fg=current_theme["fg"]).pack(pady=(16, 8), padx=24)
+
+    frame = tk.Frame(popup, bg=current_theme["bg"])
+    frame.pack(padx=24, pady=(0, 16), fill="both", expand=True)
+
+    for version, notes in CHANGELOG.items():
+        tk.Label(frame, text=version, font=FONT_TITLE2, bg=current_theme["bg"], fg=current_theme["fg"], anchor="w").pack(fill="x", pady=(8, 2))
+        for note in notes:
+            tk.Label(frame, text=f"  • {note}", font=FONT_BODY, bg=current_theme["bg"], fg=current_theme["secondary_fg"], anchor="w", justify="left").pack(fill="x")
 
 root.columnconfigure(0, weight=0, minsize=140)
 root.columnconfigure(1, weight=0)
@@ -632,8 +702,16 @@ top_frame = tk.Frame(root, bg=NAVY)
 top_frame.grid(row=0, column=0, columnspan=4, sticky="ew")
 top_frame.columnconfigure(0, weight=1)
 
-lbl_title = tk.Label(top_frame, text="Dissidia 012 Texture Replacement Tool", font=FONT_TITLE, bg=NAVY, fg="#ffffff", pady=14, padx=16)
+title_frame = tk.Frame(top_frame, bg=NAVY)
+title_frame.grid(row=0, column=0, sticky="w")
+
+lbl_title = tk.Label(title_frame, text="Dissidia 012 Texture Replacement Tool", font=FONT_TITLE, bg=NAVY, fg="#ffffff", pady=14, padx=16)
 lbl_title.grid(row=0, column=0, sticky="w")
+
+lbl_version = tk.Label(title_frame, text="v1.0.3", font=FONT_FOOTER, bg=NAVY, fg="#ffffff", padx=0, pady=14)
+lbl_version.grid(row=0, column=1, sticky="w")
+lbl_version.config(cursor="hand2")
+lbl_version.bind("<Button-1>", lambda e: show_changelog())
 
 banner_img_raw = Image.open(resource_path("banner.png")).convert("RGBA")
 banner_img_raw.thumbnail((200, 40), Image.LANCZOS)
@@ -663,7 +741,7 @@ sidebar_frame = tk.Frame(root, width=220, height=600, bg=DARK["sidebar_bg"])
 sidebar_frame.grid(row=1, column=0, rowspan=4, sticky="nsew")
 sidebar_frame.grid_propagate(False)
 
-sidebar_title = tk.Label(sidebar_frame, text="Games", font=FONT_HEADER, bg=DARK["sidebar_bg"], fg=DARK["fg"], pady=8, padx=8, anchor="center")
+sidebar_title = tk.Label(sidebar_frame, text="GAMES", font=("Trajan Pro", 12), bg=DARK["sidebar_bg"], fg=DARK["fg"], pady=8, padx=8, anchor="center")
 sidebar_title.pack(fill="x")
 
 sidebar_list_frame = tk.Frame(sidebar_frame, bg=DARK["sidebar_bg"])
@@ -755,7 +833,7 @@ def add_field(parent, label_text, var, browse_cmd, row, clear_cmd=None, extra_cm
         eye_lbl.bind("<Button-1>", lambda e: extra_cmd())
     all_widgets.append((eye_lbl, "label_frame"))
     ent.config(highlightthickness=0)
-    entry_frame.config(highlightthickness=1, highlightbackground=current_theme["border"])
+    entry_frame.config(highlightthickness=1, highlightbackground=NAVY)
     all_widgets.append((eye_lbl, "label_frame"))
     x_c = make_rounded_button(parent, "✕", clear_cmd, font=("Segoe UI", 8), width=28, height=28, bg=NAVY, fg="#ffffff", hover_bg=NAVY_DARK, parent_bg=current_theme["frame_bg"])
     x_c.grid(row=row+1, column=1, padx=(0, 4))
@@ -775,8 +853,8 @@ def add_field(parent, label_text, var, browse_cmd, row, clear_cmd=None, extra_cm
                 eye_lbl.grid_remove()
     var.trace_add("write", on_var_change)
 
-add_field(card, "Original Texture PNG File", old_png_path, browse_old, 0, lambda: clear_old())
-add_field(card, "Replacement Texture PNG File", new_png_path, browse_new, 2, lambda: clear_new())
+add_field(card, "Original Texture PNG File", old_png_path, browse_old, 0, lambda: clear_old(), extra_cmd=lambda: open_in_explorer(old_png_path.get()), extra_icon="👁")
+add_field(card, "Replacement Texture PNG File", new_png_path, browse_new, 2, lambda: clear_new(), extra_cmd=lambda: open_in_explorer(new_png_path.get()), extra_icon="👁")
 add_field(card, "textures.ini File", output_folder_path, browse_output, 4, lambda: clear_output(), extra_cmd=open_ini_file, extra_icon="👁")
 
 cat_sub_frame = tk.Frame(card)
@@ -889,7 +967,7 @@ new_png_path.trace_add("write", check_fields)
 output_folder_path.trace_add("write", check_fields)
 check_fields()
 
-append_btn = make_rounded_button(right_frame, "Append to textures.ini", run_replacement, font=("Trajan Pro", 10, "bold"), width=220, height=36, bg=NAVY, fg="#ffffff", hover_bg=NAVY_DARK, parent_bg=current_theme["bg"])
+append_btn = make_rounded_button(right_frame, "append to textures.ini", run_replacement, font=("Trajan Pro", 12, "bold"), width=220, height=36, bg=NAVY, fg="#ffffff", hover_bg=NAVY_DARK, parent_bg=current_theme["bg"])
 append_btn.grid(row=0, column=1, sticky="e")
 all_widgets.append((append_btn, "rounded_btn_bg"))
 
@@ -927,7 +1005,7 @@ preview_frame.grid(row=1, column=3, rowspan=4, padx=(0, 8), pady=(16, 0), sticky
 all_widgets.append((preview_frame, "frame"))
 
 old_canvas = tk.Canvas(preview_frame, width=PREVIEW_SIZE, height=PREVIEW_SIZE, highlightthickness=1, highlightbackground=NAVY)
-old_canvas.grid(row=0, column=0, pady=(0, 4), sticky="n")
+old_canvas.grid(row=0, column=0, pady=(0, 4))
 all_widgets.append((old_canvas, "canvas"))
 old_canvas.bind("<Double-Button-1>", lambda e: browse_old())
 

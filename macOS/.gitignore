@@ -3,3 +3,7 @@ __pycache__/
 build/
 dist/
 history.json
+app.py
+*.otf
+*ttf
+*.py
