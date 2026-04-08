@@ -32,18 +32,18 @@ A desktop tool for managing HD texture replacements for any game running on [PPS
 ## Installation
 
 ### Windows
-1. Download `PPSSPP_TRT.exe` from the [Releases](../../releases) page.
+1. Download `TRT_PPSSPP.exe` from the [Releases](../../releases) page.
 2. Place the file anywhere on your computer.
-3. Run `PPSSPP_TRT.exe`. **No installation required**.
+3. Run `TRT_PPSSPP.exe`. **No installation required**.
 4. If **Windows** blocks the app, click `Run anyway`. 
 
 ### macOS
-1. Download `PPSSPP_TRT.dmg` from the [Releases](../../releases) page.
+1. Download `TRT_PPSSPP.dmg` from the [Releases](../../releases) page.
 2. Open the file to mount the disk image.
-3. Drag `PPSSPP_TRT.app` into your **Applications** folder. Replace if prompted.
+3. Drag `TRT_PPSSPP.app` into your **Applications** folder. Replace if prompted.
 4. Open `terminal` and copy-paste the following code to allow mac to run the unsigned app:
 ```
-xattr -cr /Applications/PPSSPP_TRT.app/
+xattr -cr /Applications/TRT_PPSSPP.app/
 ```
 
 5. Confirm by typing your password if prompted.
@@ -85,7 +85,8 @@ It should maintain its hexadecimal string for the replacement to work.
 >If the filename is `08f8a0600867fb0f764f3a0d.png` do not change it to `KainPortrait_old.png` or PPSSPP will not overwrite it.
 ---
 
-<img width="522" height="356" alt="App1" src="https://github.com/user-attachments/assets/0968b850-b526-4976-b044-afacc18ddc63" /><img width="522" height="356" alt="App2" src="https://github.com/user-attachments/assets/0e4c2377-3d96-4d93-8eda-fe827a2fce6f" />
+<img width="521" height="356" alt="v1 4" src="https://github.com/user-attachments/assets/02264207-d39f-4486-948b-4e3ff43e0db6" /><img width="520" height="355" alt="App2" src="https://github.com/user-attachments/assets/cc8d48e3-26c1-4b6b-8a2d-a7fa40e3735c" />
+
 
 <img width="407" height="539" alt="Kain3" src="https://github.com/user-attachments/assets/abe74b37-29e7-4e76-bb1d-98de56c474e7" />
 
