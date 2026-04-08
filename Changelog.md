@@ -2,6 +2,9 @@ CHANGELOG =
     "v1.4":
         "As pointed out by hrydgard (PPSSPP creator), the tool now appends the last 16 digits of the original filename (instead of only using the last 8) to include CLUT (palette) hash as well."
         "Creator also asks for the tool to be renamed to 'Texture Replacement Tool for PPSSPP', so it doesn't look like an official app."
+        "Added the possibility to use same replaced texture filename for different unique hash entries."
+        "Fixed app icon not showing on preview popups."
+        "Removed the possibility to resize preview popups."
 
     "v1.3":
         "After testing with other games, app has been renamed to 'PPSSPP Texture Replacement Tool'."
